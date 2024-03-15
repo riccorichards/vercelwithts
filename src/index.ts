@@ -2,6 +2,7 @@ import exrpess, { Request, Response } from "express";
 import "dotenv/config";
 import mongoose from "mongoose";
 import Post from "./postschema";
+import NodeModel from "./NodeTree.model";
 
 export const app = exrpess();
 
@@ -15,6 +16,17 @@ mongoose
   .connect(url)
   .then(() => console.log("MongoDB was successfully connected"))
   .catch((err) => console.log(err));
+
+app.get("/api/nodes", async (req: Request, res: Response) => {
+  try {
+    //const nodes = await NodeModel.find(); // add await here
+    //return res.status(200).json(nodes);
+    return res.status(200).json("Hola");
+  } catch (error) {
+    console.error(error); // It's a good practice to log errors for debugging.
+    return res.status(500).json({ message: "An error occurred", error: error }); // send only the error message
+  }
+});
 
 app.get("/api/post", async (req: Request, res: Response) => {
   try {

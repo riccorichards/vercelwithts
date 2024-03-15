@@ -19,9 +19,8 @@ mongoose
 
 app.get("/api/nodes", async (req: Request, res: Response) => {
   try {
-    //const nodes = await NodeModel.find(); // add await here
-    //return res.status(200).json(nodes);
-    return res.status(200).json("Hola");
+    const nodes = await NodeModel.find(); // add await here
+    return res.status(200).json(nodes);
   } catch (error) {
     console.error(error); // It's a good practice to log errors for debugging.
     return res.status(500).json({ message: "An error occurred", error: error }); // send only the error message
